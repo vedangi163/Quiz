@@ -21,7 +21,10 @@ public class QuizController {
     }
 
     @GetMapping("/{id}")
-    Quiz getQuiz(@PathVariable Long id) {
+    public Quiz getQuiz(@PathVariable Long id) {
+        if (quizService.get(id) == null) {
+            throw new RuntimeException("Invalid id provided");
+        }
         return quizService.get(id);
     }
 
